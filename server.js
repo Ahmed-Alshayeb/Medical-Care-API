@@ -11,7 +11,6 @@ import rateLimit from "express-rate-limit";
 import dotenv from "dotenv";
 dotenv.config();
 
-
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/users.js";
 // import doctorRoutes from './routes/doctors.js';
