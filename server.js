@@ -97,5 +97,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`🚀 Medical Care API server running on port ${PORT}`);
-  console.log(`📱 Server IP: 173.249.38.134:${PORT}`);
 });
