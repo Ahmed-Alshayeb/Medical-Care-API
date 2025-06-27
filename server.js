@@ -57,15 +57,6 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 // Static files
 app.use("/uploads", express.static("uploads"));
 
-// Health check endpoint
-app.get("/health", (req, res) => {
-  res.status(200).json({
-    status: "OK",
-    message: "Medical Care API is running",
-    timestamp: new Date().toISOString(),
-  });
-});
-
 // API Routes
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
@@ -94,16 +85,13 @@ app.use("*", (req, res) => {
   });
 });
 
-// Global error handler
+// Globel Error Handling
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    success: false,
-    message: "Internal server error",
-    error:
-      process.env.NODE_ENV === "development"
-        ? err.message
-        : "Something went wrong",
+  res.status(err.statusCode).json({
+    status: err.status,
+    error: err,
+    message: err.message,
+    stack: err.stack,
   });
 });
 
